@@ -2,6 +2,7 @@
 import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import PostCard from "@/components/PostCard";
+import NewPostButton from "@/components/NewPostButton";
 import { posts, Post } from "@/lib/posts";
 
 const Blog = () => {
@@ -59,22 +60,26 @@ const Blog = () => {
           </p>
         </div>
 
-        <div className="flex overflow-x-auto pb-4 mb-8 scrollbar-hide">
-          <div className="flex space-x-2">
-            {categories.map((category) => (
-              <button
-                key={category}
-                onClick={() => setFilter(category)}
-                className={`whitespace-nowrap px-4 py-2 rounded-full text-sm font-medium transition-all ${
-                  filter === category
-                    ? "bg-accent text-accent-foreground"
-                    : "bg-secondary text-secondary-foreground hover:bg-secondary/80"
-                }`}
-              >
-                {category}
-              </button>
-            ))}
+        <div className="flex flex-wrap items-center justify-between gap-4 mb-8">
+          <div className="flex overflow-x-auto pb-4 scrollbar-hide">
+            <div className="flex space-x-2">
+              {categories.map((category) => (
+                <button
+                  key={category}
+                  onClick={() => setFilter(category)}
+                  className={`whitespace-nowrap px-4 py-2 rounded-full text-sm font-medium transition-all ${
+                    filter === category
+                      ? "bg-accent text-accent-foreground"
+                      : "bg-secondary text-secondary-foreground hover:bg-secondary/80"
+                  }`}
+                >
+                  {category}
+                </button>
+              ))}
+            </div>
           </div>
+          
+          <NewPostButton />
         </div>
 
         <motion.div

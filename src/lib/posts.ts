@@ -74,3 +74,20 @@ export const getRecentPosts = (count: number = 3): Post[] => {
 export const getPostById = (id: string): Post | undefined => {
   return posts.find(post => post.id === id);
 };
+
+// New function to add a post
+export const addNewPost = (postData: Omit<Post, "id">): string => {
+  // Generate new ID (in a real app, this would be handled by the backend)
+  const newId = (posts.length + 1).toString();
+  
+  // Create new post object
+  const newPost: Post = {
+    id: newId,
+    ...postData
+  };
+  
+  // Add to beginning of posts array so it appears as the most recent
+  posts.unshift(newPost);
+  
+  return newId;
+};
